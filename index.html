@@ -64,17 +64,17 @@
   <div class="main-container" align="center">
     <img src="./intro.jpg" style="max-width: 600px; width: 90vw;" alt="">
     <br>
-    <a class="custom-link" href="https://jellybulb.github.io/nohint/MXvUBnZrPpGk0rF-rgb/index.html" target="_self">시작하기</a>
+    <a class="custom-link" id="start-link" href="https://jellybulb.github.io/nohint/MXvUBnZrPpGk0rF-rgb/index.html" target="_self">시작하기</a>
   </div>
   <script>
     (() => {
-      window.onload = () => {
+      document.getElementById("start-link").addEventListener("click", (event) => {
+        event.preventDefault();
         if (!localStorage.getItem("startTime")) {
-          const now = new Date();
-          const nowString = now.toISOString();
-          localStorage.setItem("startTime", nowString);
+          localStorage.setItem("startTime", new Date().toISOString());
         }
-      };
+        location.href = event.currentTarget.href;
+      });
     })();
   </script>
 </body>
