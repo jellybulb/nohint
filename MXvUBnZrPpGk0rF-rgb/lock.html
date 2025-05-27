@@ -105,8 +105,6 @@
 {bg:'#000',color:'#ccc'},
 {bg:'#000',color:'#ccc'}];
   const password = ['3','7','6','4','9'];
-  const targetUrl = 'https://sites.google.com/view/nohint/jegichagi';
-
   const dialsContainer = document.getElementById('dials');
   const lockContainer = document.getElementById('lockContainer');
   const dialState = [];
@@ -202,7 +200,9 @@
   document.getElementById('checkBtn').addEventListener('click', () => {
     const current = pools.map((p, i) => p[dialState[i].index]);
     if (current.join('') === password.join('')) {
-      window.open(targetUrl, '_blank');
+      window.top.location.href = "https://jellybulb.github.io/nohint/Ga9J5HyQ2ZcRQu2-jegichagi/index.html";
+      // window.location.href = targetUrl;
+      // window.open(targetUrl, '_blank');
     } else {
       lockContainer.classList.add('shake');
       lockContainer.addEventListener('animationend', () => {

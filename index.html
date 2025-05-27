@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NO HINT</title>
+  <style>
+    html, body {
+      justify-content: center;
+      background: #000;
+    }
+    .main-container {
+      padding-top: 100px;
+      padding-bottom: 400px;
+      justify-content: center;
+    }
+    @keyframes rapid-glitch-short {
+      0%, 5.33%, 100% {
+        transform: none;
+        color: #672315;
+        text-shadow: none;
+      }
+      1% {
+        transform: translate(-1px, 1px) skew(2deg);
+        color: #4a1d12;
+        text-shadow: -1px 0 #2e2e2e, 1px 0 #1a1a1a;
+      }
+      1.8% {
+        transform: translate(1px, -1px) skew(-3deg);
+        color: #531f25;
+        text-shadow: 1px 0 #2a2a3b, -1px 0 #181824;
+      }
+      3.2% {
+        transform: translate(-1px, 0) skew(1deg);
+        color: #26514a;
+        text-shadow: 1px 0 #152825, -1px 0 #1c3d37;
+      }
+      4.8% {
+        transform: translate(1px, 1px) skew(-2deg);
+        color: #3c2a4a;
+        text-shadow: 1px 0 #291842, -1px 0 #1b0f33;
+      }
+      5% {
+        transform: none;
+        color: #672315;
+        text-shadow: none;
+      }
+    }
+    .custom-link,
+    .custom-link:visited,
+    .custom-link:hover,
+    .custom-link:active {
+      font-size: 22px;
+      font-weight: bold;
+      font-family: serif;
+      color: #672315;
+      text-decoration: underline;
+      display: inline-block;
+      animation: rapid-glitch-short 4.8s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container" align="center">
+    <img src="./intro.jpg" style="max-width: 600px; width: 90vw;" alt="">
+    <br>
+    <a class="custom-link" href="https://jellybulb.github.io/nohint/MXvUBnZrPpGk0rF-rgb/index.html" target="_self">시작하기</a>
+  </div>
+  <script>
+    (() => {
+      window.onload = () => {
+        if (!localStorage.getItem("startTime")) {
+          const now = new Date();
+          const nowString = now.toISOString();
+          localStorage.setItem("startTime", nowString);
+        }
+      };
+    })();
+  </script>
+</body>
+</html>
