@@ -15,16 +15,9 @@
       padding-bottom: 400px;
       justify-content: center;
     }
-        .circle-container {
-      width: 90vw;
-      max-width: 600px;
-      aspect-ratio: 1 / 1;
-      position: relative;
-      margin: 0 auto;
-    }
     .circle-container {
       width: 90vw;
-      max-width: 600px;
+      max-width: 500px;
       aspect-ratio: 1 / 1;
       position: relative;
       margin: 0 auto;
@@ -37,33 +30,39 @@
       border-radius: 8px;
       transform: translate(-50%, -50%);
     }
-    .circle-container img:nth-child(1) { top: 0%;   left: 50%; }
-    .circle-container img:nth-child(2) { top: 14.6%; left: 85.4%; }
-    .circle-container img:nth-child(3) { top: 50%;  left: 100%; }
-    .circle-container img:nth-child(4) { top: 85.4%; left: 85.4%; }
-    .circle-container img:nth-child(5) { top: 100%; left: 50%; }
-    .circle-container img:nth-child(6) { top: 85.4%; left: 14.6%; }
-    .circle-container img:nth-child(7) { top: 50%;  left: 0%; }
-    .circle-container img:nth-child(8) { top: 14.6%; left: 14.6%; }
+    .circle-container img:nth-child(1) { top: 10%;   left: 50%; }
+    .circle-container img:nth-child(2) { top: 20.6%; left: 79.4%; }
+    .circle-container img:nth-child(3) { top: 50%;   left: 90%; }
+    .circle-container img:nth-child(4) { top: 79.4%; left: 79.4%; }
+    .circle-container img:nth-child(5) { top: 90%;   left: 50%; }
+    .circle-container img:nth-child(6) { top: 79.4%; left: 20.6%; }
+    .circle-container img:nth-child(7) { top: 50%;   left: 10%; }
+    .circle-container img:nth-child(8) { top: 20.6%; left: 20.6%; }
   </style>
 </head>
 <body>
   <div class="main-container" align="center">
     <div class="circle-container">
-      <img src="./smile.png" alt="1">
-      <img src="./smile.png" alt="2">
-      <img src="./smile.png" alt="3">
-      <img src="./smile.png" alt="4">
-      <img src="./smile.png" alt="5">
-      <img src="./smile.png" alt="6">
-      <img src="./smile.png" alt="7">
-      <img src="./smile.png" alt="8">
+      <img src="./frown.png" alt="1" id="face1">
+      <img src="./smile.png" alt="2" id="face2">
+      <img src="./smile.png" alt="3" id="face3">
+      <img src="./smile.png" alt="4" id="face4">
+      <img src="./smile.png" alt="5" id="face5">
+      <img src="./frown.png" alt="6" id="face6">
+      <img src="./frown.png" alt="7" id="face7">
+      <img src="./frown.png" alt="8" id="face8">
     </div>
     <br>
     <br>
     <!-- 자물쇠 -->
-    <iframe style="max-width: 360px; width: 75vw; aspect-ratio: 1/1;" frameborder="0" src="./lock.html">
+    <iframe style="max-width: 360px; width: 75vw; aspect-ratio: 1/1;" frameborder="0" src="./lock.html" id="lock-iframe">
     </iframe>
   </div>
+  <script>
+      const lockIframe = document.getElementById('lock-iframe');
+      lockIframe.onload = () => {
+        lockIframe.contentWindow.updateSmileFaces();
+      };
+  </script>
 </body>
 </html>
