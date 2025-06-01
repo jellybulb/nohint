@@ -22,34 +22,39 @@
       position: relative;
       margin: 0 auto;
     }
-    .circle-container img {
+    .circle-container {
+      width: 90vw;
+      max-width: 600px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      margin: 0 auto;
+    }
+    .circle-container .circle-item {
+      --i: 0;
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: rotate(calc(var(--i) * 45deg)) translateX(40%) rotate(calc(var(--i) * -45deg));
+    }
+    .circle-container .circle-item img {
       width: 20%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 8px;
     }
-    .circle-container img:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, 0); }
-    .circle-container img:nth-child(2) { top: 18%; left: 85%; transform: translate(-50%, -50%); }
-    .circle-container img:nth-child(3) { top: 50%; left: 100%; transform: translate(-100%, -50%); }
-    .circle-container img:nth-child(4) { top: 82%; left: 85%; transform: translate(-50%, -50%); }
-    .circle-container img:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); }
-    .circle-container img:nth-child(6) { top: 82%; left: 15%; transform: translate(-50%, -50%); }
-    .circle-container img:nth-child(7) { top: 50%; left: 0%; transform: translate(0, -50%); }
-    .circle-container img:nth-child(8) { top: 18%; left: 15%; transform: translate(-50%, -50%); }
   </style>
 </head>
 <body>
   <div class="main-container" align="center">
     <div class="circle-container">
-      <img src="./smile.png" alt="1">
-      <img src="./smile.png" alt="2">
-      <img src="./smile.png" alt="3">
-      <img src="./smile.png" alt="4">
-      <img src="./smile.png" alt="5">
-      <img src="./smile.png" alt="6">
-      <img src="./smile.png" alt="7">
-      <img src="./smile.png" alt="8">
+      <div class="circle-item" style="--i: 0;"><img src="./smile.png" alt="1"></div>
+      <div class="circle-item" style="--i: 1;"><img src="./smile.png" alt="2"></div>
+      <div class="circle-item" style="--i: 2;"><img src="./smile.png" alt="3"></div>
+      <div class="circle-item" style="--i: 3;"><img src="./smile.png" alt="4"></div>
+      <div class="circle-item" style="--i: 4;"><img src="./smile.png" alt="5"></div>
+      <div class="circle-item" style="--i: 5;"><img src="./smile.png" alt="6"></div>
+      <div class="circle-item" style="--i: 6;"><img src="./smile.png" alt="7"></div>
+      <div class="circle-item" style="--i: 7;"><img src="./smile.png" alt="8"></div>
     </div>
     <br>
     <br>
