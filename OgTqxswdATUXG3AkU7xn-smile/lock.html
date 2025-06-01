@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8-Pin Toggle Lock</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body { width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; }
+
+    /* 판 비율 1:1.2 */
+    .lock-wrapper {
+      width: 60vmin; max-width: 300px;
+      aspect-ratio: 1 / 1.2;
+      background: #292929;
+      border-radius: 7vmin;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr) auto;
+      padding: 3vmin;
+      gap: 1vmin;
+    }
+
+    .pins {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1vmin;
+      grid-row: 1 / span 4;
+    }
+
+    .cell {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cell.left { flex-direction: row; }
+    .cell.right { flex-direction: row-reverse; }
+
+    /* 버튼: 판 폭/7, 높이=폭*0.9, 깊은 엠보싱 */
+    .pin {
+      width: calc(270% / 7);
+      aspect-ratio: 1 / 0.8;
+      background: #ccc;
+      border-radius: 0.8vmin;
+      cursor: pointer;
+      transition: box-shadow 0.1s, background 0.1s;
+      position: relative;
+border: 0.8vmin solid #555;
+    box-shadow:
+       0.2vmin  0.2vmin 0.5vmin 1vmin rgba(40,40,40,1);
+    }
+
+    .pin.active {
+      box-shadow:
+        inset  0.2vmin  0.2vmin 1vmin rgba(40,40,40,1);
+      background: #444;
+    }
+
+    .label {
+      font-size: 6.5vmin;
+font-weight: bold;
+      color: #555;
+      user-select: none;
+      margin: 0 2vmin;
+    }
+
+    /* 확인 버튼: 폭 절반, 회색 */
+    .confirm {
+      grid-row: 5;
+      width: 30%; margin: 0 auto;
+      padding: 1vmin 0;
+      background: #555;
+      color: #ddd;
+      font-size: 5vmin;
+      text-align: center;
+      border: none;
+      border-radius: 1vmin;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .confirm:active { transform: translateY(2%); }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-2%); }
+      40% { transform: translateX(2%); }
+      60% { transform: translateX(-2%); }
+      80% { transform: translateX(2%); }
+      100% { transform: translateX(0); }
+    }
+    .shake { animation: shake 0.25s ease; }
+  </style>
+</head>
+<body>
+  <div class="lock-wrapper" id="lock">
+    <div class="pins" id="pins"></div>
+    <button class="confirm" id="confirm">확인</button>
+  </div>
+
+  <script>
+  const labelToIndex = {
+    1: 0, 2: 2, 3: 4, 4: 6, // 왼쪽
+    5: 1, 6: 3, 7: 5, 8: 7  // 오른쪽
+  };
+
+const correctPins = [1, 2, 4, 5];
+const correctCombo = Array(8).fill(0);
+  correctPins.forEach(label => {
+    const idx = labelToIndex[label];
+    if (idx !== undefined) correctCombo[idx] = 1;
+  });
+    const pinsContainer = document.getElementById('pins');
+    const lock = document.getElementById('lock');
+    const state = Array(8).fill(0);
+
+    // 숫자 매핑: 왼쪽 열 위->아래 1,2,3,4 / 오른쪽 열 위->아래 5,6,7,8
+    const labelMap = {0:1,2:2,4:3,6:4, 1:5,3:6,5:7,7:8};
+
+    for (let i = 0; i < 8; i++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell', i % 2 === 0 ? 'left' : 'right');
+
+      const label = document.createElement('span');
+      label.classList.add('label');
+      label.textContent = labelMap[i];
+
+      const pin = document.createElement('div');
+      pin.classList.add('pin');
+      pin.dataset.idx = i;
+      pin.addEventListener('click', () => {
+        state[i] ^= 1;
+        pin.classList.toggle('active');
+      });
+
+      cell.append(label, pin);
+      pinsContainer.appendChild(cell);
+    }
+
+    document.getElementById('confirm').addEventListener('click', () => {
+      const ok = state.every((v, i) => v === correctCombo[i]);
+      if (ok) window.top.location.href = 'https://jellybulb.github.io/nohint/pMmGIeMbb3KANcV-robot/index.html';
+      else {
+        lock.classList.add('shake');
+        setTimeout(() => lock.classList.remove('shake'), 300);
+      }
+    });
+  </script>
+</body>
+</html>
