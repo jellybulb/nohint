@@ -51,6 +51,7 @@
     <button id="confirm">확인</button>
   </div>
 
+  <script src="/common.js"></script>
   <script>
     const dial = document.getElementById('dial');
     const inputsContainer = document.getElementById('inputs');
@@ -102,6 +103,7 @@
       if (history.length === ANSWER.length && history.every((d,i) => d === ANSWER[i])) {
         window.top.location.href = 'https://jellybulb.github.io/nohint/joAd1kMhI4eqpYe-press/index.html';
       } else {
+        handleWrongAnswer();
         lock.classList.add('shaking');
         setTimeout(() => lock.classList.remove('shaking'), 300);
         history = [];

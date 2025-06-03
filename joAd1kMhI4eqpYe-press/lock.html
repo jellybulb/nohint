@@ -94,6 +94,7 @@ font-weight: bold;
     <button class="confirm" id="confirm">확인</button>
   </div>
 
+  <script src="/common.js"></script>
   <script>
   const labelToIndex = {
     1: 0, 2: 2, 3: 4, 4: 6, // 왼쪽
@@ -137,6 +138,7 @@ const correctCombo = Array(8).fill(0);
       const ok = state.every((v, i) => v === correctCombo[i]);
       if (ok) window.top.location.href = 'https://jellybulb.github.io/nohint/pMmGIeMbb3KANcV-robot/index.html';
       else {
+        handleWrongAnswer();
         lock.classList.add('shake');
         setTimeout(() => lock.classList.remove('shake'), 300);
       }

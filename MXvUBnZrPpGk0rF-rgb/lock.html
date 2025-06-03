@@ -94,6 +94,7 @@
     <button id="checkBtn" class="check-btn">확인</button>
   </div>
 
+<script src="/common.js"></script>
 <script>
 (function() {
   const pools = [
@@ -202,9 +203,8 @@
     const current = pools.map((p, i) => p[dialState[i].index]);
     if (current.join('') === password.join('')) {
       window.top.location.href = "https://jellybulb.github.io/nohint/Ga9J5HyQ2ZcRQu2-jegichagi/index.html";
-      // window.location.href = targetUrl;
-      // window.open(targetUrl, '_blank');
     } else {
+      handleWrongAnswer();
       lockContainer.classList.add('shake');
       lockContainer.addEventListener('animationend', () => {
         lockContainer.classList.remove('shake');
