@@ -12,6 +12,7 @@ async function loadConfig() {
 }
 
 async function handleCorrectAnswer() {
+  const root = '/nohint';
   const parentLocalStorage = window.parent.localStorage;
 
   var appConfig = window.parent.appConfig;
@@ -22,7 +23,6 @@ async function handleCorrectAnswer() {
 
   var currentStageId = parentLocalStorage.getItem('currentStageId');
   if (!currentStageId) {
-    const root = '/nohint';
     const parentPath = window.parent.location.pathname;
     const relativePath = parentPath.slice(root.length);
     const segments = relativePath.split('/').filter(Boolean);
