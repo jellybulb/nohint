@@ -33,7 +33,9 @@
   <script src="/nohint/common.js"></script>
   <script>
     (() => {
-      updateStageIds();
+      window.addEventListener('pageshow', () => {
+        updateStageIds();
+      });
     })();
   </script>
 </body>

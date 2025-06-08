@@ -63,7 +63,9 @@
   <script src="/nohint/common.js"></script>
   <script>
     (() => {
-      updateStageIds();
+      window.addEventListener('pageshow', () => {
+        updateStageIds();
+      });
 
       const lockIframe = document.getElementById('lock-iframe');
       lockIframe.onload = () => {
