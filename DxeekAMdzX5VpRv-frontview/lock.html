@@ -136,7 +136,9 @@ const correctCombo = Array(8).fill(0);
 
     document.getElementById('confirm').addEventListener('click', () => {
       const ok = state.every((v, i) => v === correctCombo[i]);
-      if (ok) window.top.location.href = '/nohint/H3WA8uKlxYBmTwu-fruitrainbow/index.html';
+      if (ok) {
+        handleCorrectAnswer();
+      }
       else {
         handleWrongAnswer();
         lock.classList.add('shake');

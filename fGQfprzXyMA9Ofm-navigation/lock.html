@@ -201,7 +201,7 @@
   document.getElementById('checkBtn').addEventListener('click', () => {
     const current = pools.map((p, i) => p[dialState[i].index]);
     if (current.join('') === password.join('')) {
-      window.top.location.href = '/nohint/VsU2GkxkzF5lS6x-dice/index.html';
+      handleCorrectAnswer();
     } else {
       handleWrongAnswer();
       lockContainer.classList.add('shake');

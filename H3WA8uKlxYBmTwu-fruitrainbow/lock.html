@@ -101,7 +101,7 @@
 
     confirmBtn.addEventListener('click', () => {
       if (history.length === ANSWER.length && history.every((d,i) => d === ANSWER[i])) {
-        window.top.location.href = '/nohint/pMmGIeMbb3KANcV-difference/index.html';
+        handleCorrectAnswer();
       } else {
         handleWrongAnswer();
         lock.classList.add('shaking');
