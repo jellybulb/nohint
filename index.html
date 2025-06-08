@@ -78,16 +78,8 @@
         if (!localStorage.getItem("startTime")) {
           localStorage.setItem("startTime", new Date().toISOString());
         }
-
         const appConfig = window.appConfig;
         const firstStageId = appConfig.stages[0];
-
-        localStorage.setItem('currentStageId', firstStageId);
-        var peakStageId = localStorage.getItem('peakStageId');
-        if (!peakStageId) {
-          localStorage.setItem('peakStageId', firstStageId);
-        }
-
         location.href = '/nohint/' + firstStageId;
       });
     })();
