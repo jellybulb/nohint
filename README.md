@@ -1,1 +1,1 @@
-https://jellybulb.github.io/nohint/
+https://jellybulb.github.io/nohint

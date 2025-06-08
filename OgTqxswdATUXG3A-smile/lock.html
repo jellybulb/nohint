@@ -101,7 +101,7 @@ font-weight: bold;
     5: 1, 6: 3, 7: 5, 8: 7  // 오른쪽
   };
 
-const correctPins = [1, 2, 4, 5];
+const correctPins = [1, 7, 8, 4];
 const correctCombo = Array(8).fill(0);
   correctPins.forEach(label => {
     const idx = labelToIndex[label];
@@ -128,6 +128,7 @@ const correctCombo = Array(8).fill(0);
       pin.addEventListener('click', () => {
         state[i] ^= 1;
         pin.classList.toggle('active');
+        updateSmileFaces();
       });
 
       cell.append(label, pin);
@@ -136,13 +137,26 @@ const correctCombo = Array(8).fill(0);
 
     document.getElementById('confirm').addEventListener('click', () => {
       const ok = state.every((v, i) => v === correctCombo[i]);
-      if (ok) window.top.location.href = '/nohint/Ga9J5HyQ2ZcRQu2-jegichagi/index.html';
+      if (ok) window.top.location.href = '/nohint/ZgLsCjFcpjAqSMJ-perspective/index.html';
       else {
         handleWrongAnswer();
         lock.classList.add('shake');
         setTimeout(() => lock.classList.remove('shake'), 300);
       }
     });
+
+      function updateSmileFaces() {
+        for (let i = 0; i < 8; i++) {
+          const label = labelMap[i];
+          const img = parent.document.getElementById(`face${i + 1}`);
+          if (!(correctPins.includes(label) ^ state[i])) {
+            img.src = "./smile.png";
+          }
+          else {
+            img.src = "./frown.png";
+          }
+        }
+      }
   </script>
 </body>
 </html>

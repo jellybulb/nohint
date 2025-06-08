@@ -62,7 +62,7 @@
     const MAX = 20;
     const symbols = { up:'↑', down:'↓', left:'←', right:'→' };
 
-    const ANSWER = [symbols.up, symbols.down, symbols.right, symbols.up, symbols.left];
+    const ANSWER = [symbols.down, symbols.up, symbols.right, symbols.down, symbols.left, symbols.up];
 
     dial.addEventListener('pointerdown', e => {
       e.preventDefault(); dragging = true;
@@ -101,7 +101,7 @@
 
     confirmBtn.addEventListener('click', () => {
       if (history.length === ANSWER.length && history.every((d,i) => d === ANSWER[i])) {
-        window.top.location.href = '/nohint/tbd/index.html';
+        window.top.location.href = '/nohint/pMmGIeMbb3KANcV-difference/index.html';
       } else {
         handleWrongAnswer();
         lock.classList.add('shaking');

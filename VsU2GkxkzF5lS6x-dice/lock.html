@@ -18,7 +18,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 70vw;
+      width: 90vw;
       max-width: 600px;
       background: #292929;
       padding: 4vw;
@@ -60,7 +60,7 @@
       user-select: none;
     }
     .check-btn {
-      width: calc((25% - 3vw) * 1.35);
+      width: calc(25% - 3vw);
       margin-top: 4vw;
       padding: 2vw;
       font-size: 5vw;
@@ -98,13 +98,14 @@
 <script>
 (function() {
   const pools = [
-['O','P','Q','R','S','T','U','V','W','X'],['J','K','L','M','N','O','P','Q','R','S'],['N','O','P','Q','R','S','T','U','V','W'],['W','X','Y','Z','A','B','C','D','E','F']];
+['0','1','2','3','4','5','6','7','8','9'],['0','1','2','3','4','5','6','7','8','9'],['0','1','2','3','4','5','6','7','8','9'],['0','1','2','3','4','5','6','7','8','9'],['0','1','2','3','4','5','6','7','8','9']];
   const styles = [
 {bg:'#000',color:'#ccc'},
 {bg:'#000',color:'#ccc'},
 {bg:'#000',color:'#ccc'},
+{bg:'#000',color:'#ccc'},
 {bg:'#000',color:'#ccc'}];
-  const password = ['W','O','O','D'];
+  const password = ['0','0','0','0','9'];
   const dialsContainer = document.getElementById('dials');
   const lockContainer = document.getElementById('lockContainer');
   const dialState = [];
@@ -201,7 +202,7 @@
   document.getElementById('checkBtn').addEventListener('click', () => {
     const current = pools.map((p, i) => p[dialState[i].index]);
     if (current.join('') === password.join('')) {
-      window.top.location.href = 'https://jellybulb.github.io/nohint/ZgLsCjFcpjAqSMJ4Knps-perspective/index.html';
+      window.top.location.href = "/nohint/OgTqxswdATUXG3A-smile/index.html";
     } else {
       handleWrongAnswer();
       lockContainer.classList.add('shake');
