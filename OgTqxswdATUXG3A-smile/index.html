@@ -60,11 +60,16 @@
     <iframe style="max-width: 360px; width: 75vw; aspect-ratio: 1/1;" frameborder="0" src="./lock.html" id="lock-iframe">
     </iframe>
   </div>
+  <script src="/nohint/common.js"></script>
   <script>
+    (() => {
+      updateStageIds();
+
       const lockIframe = document.getElementById('lock-iframe');
       lockIframe.onload = () => {
         lockIframe.contentWindow.updateSmileFaces();
       };
+    })();
   </script>
 </body>
 </html>
