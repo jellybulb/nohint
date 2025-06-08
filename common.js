@@ -14,6 +14,7 @@ async function loadConfig() {
 async function updateStageIds() {
   await loadConfig();
 
+  const root = '/nohint';
   const parentPath = window.location.pathname;
   const relativePath = parentPath.slice(root.length);
   const segments = relativePath.split('/').filter(Boolean);
