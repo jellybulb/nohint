@@ -27,7 +27,6 @@ async function handleCorrectAnswer() {
     const relativePath = parentPath.slice(root.length);
     const segments = relativePath.split('/').filter(Boolean);
     currentStageId = segments.length > 0 ? segments[0] : null;
-    parentLocalStorage.setItem('currentStageId', currentStageId);
   }
 
   var targetUrl = root + '/error';
@@ -42,6 +41,8 @@ async function handleCorrectAnswer() {
     const nextStageIndex = currentStageIndex + 1;
     if (nextStageIndex < stages.length) {
       const nextStageId = stages[nextStageIndex];
+
+      parentLocalStorage.setItem('currentStageId', nextStageId);
 
       var peakStageId = parentLocalStorage.getItem('peakStageId');
       if (!peakStageId) {
