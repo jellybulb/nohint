@@ -148,6 +148,14 @@ const correctCombo = Array(8).fill(0);
     });
 
       function updateSmileFaces() {
+        // To notice feedback.
+        const blinkImage = document.getElementById('blink-image');
+        const originalFilter = blinkImage.style.filter || '';
+        blinkImage.style.filter = 'brightness(50%)';
+        setTimeout(() => {
+          blinkImage.style.filter = originalFilter;
+        }, 50);
+        
         for (let i = 0; i < 8; i++) {
           const label = labelMap[i];
           const img = parent.document.getElementById(`face${i + 1}`);
