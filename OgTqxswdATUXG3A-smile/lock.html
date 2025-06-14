@@ -151,10 +151,10 @@ const correctCombo = Array(8).fill(0);
         // To notice feedback.
         const blinkImage = parent.document.getElementById('blink-image');
         const originalFilter = blinkImage.style.filter || '';
-        blinkImage.style.filter = 'brightness(50%)';
+        blinkImage.style.filter = 'brightness(30%)';
         setTimeout(() => {
           blinkImage.style.filter = originalFilter;
-        }, 50);
+        }, 100);
         
         for (let i = 0; i < 8; i++) {
           const label = labelMap[i];
