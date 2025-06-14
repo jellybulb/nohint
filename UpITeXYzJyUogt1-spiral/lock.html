@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Combination Dial Lock</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+    .lock-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 90vw;
+      max-width: 600px;
+      background: #292929;
+      padding: 4vw;
+      border-radius: 2vw;
+      box-shadow: 0 0 2vw rgba(255,255,255,0.1);
+    }
+    #dials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .dial {
+      position: relative;
+      width: 14vw;
+      height: 14vw;
+      max-width: 80px;
+      max-height: 80px;
+      margin: 2vw;
+      overflow: hidden;
+      border: 0.8vw solid #555;
+      border-radius: 1vw;
+      touch-action: none;
+      user-select: none;
+    }
+    .dial-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .dial-item {
+      width: 100%;
+      height: 14vw;
+      max-height: 80px;
+      line-height: 14vw;
+      text-align: center;
+      font-size: 8vw;
+      max-font-size: 40px;
+      user-select: none;
+    }
+    .check-btn {
+      width: calc(25% - 3vw);
+      margin-top: 4vw;
+      padding: 2vw;
+      font-size: 5vw;
+      max-font-size: 24px;
+      user-select: none;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      border-radius: 1vw;
+      background: #555;
+      color: #ddd;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .check-btn:active {
+      background: #222;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateY(0); }
+      25%, 75% { transform: translateY(-2%); }
+      50% { transform: translateY(2%); }
+    }
+    .shake {
+      animation: shake 0.25s;
+    }
+  </style>
+</head>
+<body>
+  <div class="lock-container" id="lockContainer">
+    <div id="dials"></div>
+    <button id="checkBtn" class="check-btn">확인</button>
+  </div>
+
+<script src="/nohint/common.js"></script>
+<script>
+(function() {
+  const pools = [
+['K','L','M','N','O','P','Q','R','S','T'],['K','L','M','N','O','P','Q','R','S','T'],['K','L','M','N','O','P','Q','R','S','T'],['A','B','C','D','E','F','G','H','I','J'],['U','V','W','X','Y','Z','!','&','-',' ']];
+  const styles = [
+{bg:'#000',color:'#ccc'},
+{bg:'#000',color:'#ccc'},
+{bg:'#000',color:'#ccc'},
+{bg:'#000',color:'#ccc'},
+{bg:'#000',color:'#ccc'}];
+  const password = ['S','T','R','A','W'];
+  const dialsContainer = document.getElementById('dials');
+  const lockContainer = document.getElementById('lockContainer');
+  const dialState = [];
+  const lists = [];
+
+  pools.forEach((pool, idx) => {
+    const dial = document.createElement('div');
+    dial.className = 'dial';
+    dial.style.backgroundColor = styles[idx].bg;
+    const list = document.createElement('div');
+    list.className = 'dial-list';
+
+    const extended = pool.concat(pool).concat(pool);
+    extended.forEach(char => {
+      const item = document.createElement('div');
+      item.className = 'dial-item';
+      item.textContent = char;
+      item.style.color = styles[idx].color;
+      list.appendChild(item);
+    });
+
+    dial.appendChild(list);
+    dialsContainer.appendChild(dial);
+
+    const len = pool.length;
+    const randomIndex = Math.floor(Math.random() * len);
+    dialState[idx] = { index: randomIndex };
+    lists[idx] = list;
+
+    const itemH = list.children[0].getBoundingClientRect().height;
+    const finalOffset = -((len + randomIndex) * itemH);
+    dialState[idx].offset = finalOffset;
+    list.style.transform = `translateY(${Math.round(finalOffset)}px)`;
+
+    let startY = 0;
+    let startOffset = finalOffset;
+    let dragging = false;
+
+    const onUp = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      try { list.releasePointerCapture(e.pointerId); } catch (_) {}
+      const dy = e.clientY - startY;
+      const itemH2 = list.children[0].getBoundingClientRect().height;
+      const rawIndex = -((startOffset + dy) / itemH2);
+      const nearest = Math.round(rawIndex);
+      const logical = ((nearest % len) + len) % len;
+      dialState[idx].index = logical;
+      const finalOffset = -((len + logical) * itemH2);
+      dialState[idx].offset = finalOffset;
+      list.style.transform = `translateY(${Math.round(finalOffset)}px)`;
+    };
+
+    list.addEventListener('pointerdown', e => {
+      e.preventDefault();
+      dragging = true;
+      startY = e.clientY;
+      startOffset = dialState[idx].offset;
+      try { list.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+
+    list.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dy = e.clientY - startY;
+      list.style.transform = `translateY(${startOffset + dy}px)`;
+    });
+
+    list.addEventListener('pointerup', onUp);
+    list.addEventListener('pointercancel', onUp);
+    list.addEventListener('lostpointercapture', () => {
+      dragging = false;
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(() => {
+      lists.forEach((list, idx) => {
+        const itemH = list.children[0].getBoundingClientRect().height;
+        const len = pools[idx].length;
+        const offset = -((len + dialState[idx].index) * itemH);
+        dialState[idx].offset = offset;
+        list.style.transition = 'none';
+        list.style.transform = `translateY(${Math.round(offset)}px)`;
+      });
+    });
+  });
+
+    document.body.addEventListener('touchstart', function(){
+      if (document.activeElement && document.activeElement !== document.body) {
+        document.activeElement.blur();
+      }
+    }, false);
+
+  document.getElementById('checkBtn').addEventListener('click', () => {
+    const current = pools.map((p, i) => p[dialState[i].index]);
+    if (current.join('') === password.join('')) {
+      handleCorrectAnswer();
+    } else {
+      handleWrongAnswer();
+      lockContainer.classList.add('shake');
+      lockContainer.addEventListener('animationend', () => {
+        lockContainer.classList.remove('shake');
+      }, { once: true });
+    }
+  });
+
+    document.getElementById('checkBtn').addEventListener('touchend', e => {
+      e.preventDefault();
+      document.getElementById('checkBtn').click();
+    });
+
+})();
+</script>
+</body>
+</html>
