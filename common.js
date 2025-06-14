@@ -82,7 +82,7 @@ async function handleCorrectAnswer() {
 
 function handleWrongAnswer() {
   try {
-    navigator.vibrate(100);
+    navigator.vibrate(70);
 
     const parentLocalStorage = window.parent.localStorage;
     const current = parentLocalStorage.getItem('wrongAnswerCount');
