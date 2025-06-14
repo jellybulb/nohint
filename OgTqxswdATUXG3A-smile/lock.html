@@ -150,10 +150,9 @@ const correctCombo = Array(8).fill(0);
       function updateSmileFaces() {
         // To notice feedback.
         const blinkImage = parent.document.getElementById('blink-image');
-        const originalFilter = blinkImage.style.filter || '';
-        blinkImage.style.filter = 'brightness(30%)';
+        blinkImage.classList.add('flash-shake');
         setTimeout(() => {
-          blinkImage.style.filter = originalFilter;
+          blinkImage.classList.remove('flash-shake');
         }, 100);
         
         for (let i = 0; i < 8; i++) {
