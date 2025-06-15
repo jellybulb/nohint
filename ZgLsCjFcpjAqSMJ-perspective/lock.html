@@ -131,17 +131,17 @@
     dialsContainer.appendChild(dial);
 
     const len = pool.length;
-    const randomIndex = Math.floor(Math.random() * len);
-    dialState[idx] = { index: randomIndex };
+    dialState[idx] = { index: 0 };
+
     lists[idx] = list;
 
     const itemH = list.children[0].getBoundingClientRect().height;
-    const finalOffset = -((len + randomIndex) * itemH);
-    dialState[idx].offset = finalOffset;
-    list.style.transform = `translateY(${Math.round(finalOffset)}px)`;
+    const baseOffset = -len * itemH;
+    dialState[idx].offset = baseOffset;
+    list.style.transform = `translateY(${Math.round(baseOffset)}px)`;
 
     let startY = 0;
-    let startOffset = finalOffset;
+    let startOffset = baseOffset;
     let dragging = false;
 
     const onUp = (e) => {
