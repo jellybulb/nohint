@@ -164,6 +164,10 @@ const correctCombo = Array(8).fill(0);
           else {
             img.src = "./frown.png";
           }
+          img.classList.add('flash-shake');
+          setTimeout(() => {
+            img.classList.remove('flash-shake');
+          }, 120);
         }
       }
   </script>
