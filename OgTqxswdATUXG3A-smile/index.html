@@ -39,6 +39,9 @@
     .circle-container img:nth-child(6) { top: 79.4%; left: 20.6%; }
     .circle-container img:nth-child(7) { top: 50%;   left: 10%; }
     .circle-container img:nth-child(8) { top: 20.6%; left: 20.6%; }
+    #blink-image {
+      transition: all 120ms ease;
+    }
     .flash-shake {
       filter: blur(8px);
       animation: shake 120ms;
@@ -66,7 +69,7 @@
       <img src="./frown.png" alt="6" id="face6">
     </div>
     <br>
-    <img src="./phrase.gif" style="max-width: 300px; width: 67.5vw;" alt="">
+    <img id="blink-image" src="./phrase.gif" style="max-width: 300px; width: 67.5vw;" alt="">
     <br>
     <br>
     <!-- 자물쇠 -->
