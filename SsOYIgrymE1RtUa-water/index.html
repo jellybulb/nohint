@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/nohint/favicon.ico" type="image/x-icon"/>
+  <title>NO HINT - Water</title>
+  <style>
+    html, body {
+      justify-content: center;
+      background: #000;
+    }
+    .main-container {
+      padding-top: 100px;
+      padding-bottom: 400px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container" align="center">
+    <!-- 문제 -->
+    <img src="./puzzle.jpg" style="max-width: 120px; width: 90vw;" alt="">
+    <br>
+    <br>
+    <!-- 자물쇠 -->
+    <iframe style="max-width: 400px; width: 80vw; aspect-ratio: 2/1;" frameborder="0" src="./lock.html">
+    </iframe>
+  </div>
+  <script src="/nohint/common.js"></script>
+  <script>
+    (() => {
+      window.addEventListener('pageshow', () => {
+        updateStageIds();
+      });
+    })();
+  </script>
+</body>
+</html>
