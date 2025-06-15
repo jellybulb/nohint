@@ -147,29 +147,33 @@ const correctCombo = Array(8).fill(0);
       }
     });
 
-      function updateSmileFaces() {
-        // To notice feedback.
+    let firstCall = true;
+    function updateSmileFaces() {
+      if (!firstCall) {
         const blinkImage = parent.document.getElementById('blink-image');
         blinkImage.classList.add('flash-shake');
         setTimeout(() => {
           blinkImage.classList.remove('flash-shake');
         }, 120);
-        
-        for (let i = 0; i < 8; i++) {
-          const label = labelMap[i];
-          const img = parent.document.getElementById(`face${i + 1}`);
-          if (!(correctPins.includes(label) ^ state[i])) {
-            img.src = "./smile.png";
-          }
-          else {
-            img.src = "./frown.png";
-          }
-          img.classList.add('flash-shake');
-          setTimeout(() => {
-            img.classList.remove('flash-shake');
-          }, 120);
+        const blinkContainer = parent.document.getElementById('blink-container');
+        blinkContainer.classList.add('flash-shake');
+        setTimeout(() => {
+          blinkContainer.classList.remove('flash-shake');
+        }, 120);
+      }
+      firstCall = false;
+
+      for (let i = 0; i < 8; i++) {
+        const label = labelMap[i];
+        const img = parent.document.getElementById(`face${i + 1}`);
+        if (!(correctPins.includes(label) ^ state[i])) {
+          img.src = "./smile.png";
+        }
+        else {
+          img.src = "./frown.png";
         }
       }
+    }
   </script>
 </body>
 </html>
