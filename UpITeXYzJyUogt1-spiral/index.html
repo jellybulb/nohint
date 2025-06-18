@@ -15,6 +15,24 @@
       padding-bottom: 400px;
       justify-content: center;
     }
+    .stage-link-container {
+      width: 70vw;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: serif;
+    }
+    .stage-link {
+      display: block;
+      font-size: 7vw;
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 1em;
+    }
+    .stage-link:visited {
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
@@ -30,11 +48,14 @@
     <iframe style="max-width: 400px; width: 80vw; aspect-ratio: 2/1;" frameborder="0" src="./lock.html">
     </iframe>
   </div>
+  <div class="stage-link-container" id="linkContainer">
+  </div>
   <script src="/nohint/common.js"></script>
   <script>
     (() => {
-      window.addEventListener('pageshow', () => {
-        updateStageIds();
+      window.addEventListener('pageshow', async () => {
+        await updateStageIds();
+        await displayStageLinks();
       });
     })();
   </script>

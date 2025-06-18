@@ -42,6 +42,36 @@ async function updateStageIds() {
   }
 }
 
+async function displayStageLinks() {
+  const peakStageId = window.localStorage.getItem('peakStageId');
+  if (!peakStageId) {
+    return;
+  }
+
+  var appConfig = window.parent.appConfig;
+  if (!appConfig) {
+    await loadConfig();
+    appConfig = window.appConfig;
+  }
+
+  const stages = appConfig.stages;
+  if (!stages.includes(peakStageId)) {
+    return;
+  }
+
+  const linkContainer = document.getElementById('linkContainer');
+  for (let i = 0; i < stages.length; i++) {
+    const link = document.createElement('a');
+    const stageId = stages[i];
+    link.href = '/nohint/' + stageId;
+    link.className = 'stage-link';
+    link.textContent = `${i + 1}. ${stageId}`;
+    linkContainer.appendChild(link);
+
+    if (stageId === peakStageId) break;
+  }
+}
+
 async function handleCorrectAnswer() {
   const root = '/nohint';
   const parentLocalStorage = window.parent.localStorage;
