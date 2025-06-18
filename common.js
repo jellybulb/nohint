@@ -67,7 +67,7 @@ async function displayStageLinks() {
     const stageId = stages[i];
     link.href = '/nohint/' + stageId;
     link.className = 'stage-link';
-    link.textContent = `${i + 1}. ${stageId}`;
+    link.textContent = `${i + 1}. ${stageId.split("-")[1]}`;
     linkContainer.appendChild(link);
 
     if (stageId === peakStageId) break;
