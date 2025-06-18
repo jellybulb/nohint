@@ -67,7 +67,11 @@ async function displayStageLinks() {
     const stageId = stages[i];
     link.href = '/nohint/' + stageId;
     link.className = 'stage-link';
-    link.textContent = `${i + 1}. ${stageId.split("-")[1]}`;
+    link.textContent = `${i + 1}. ${stageId.split("-")[1].toUpperCase()}`;
+    if (stageId === window.localStorage.getItem('currentStageId')) {
+      link.className += " disabled";
+      link.textContent += " ◀";
+    }
     linkContainer.appendChild(link);
 
     if (stageId === peakStageId) break;
