@@ -43,6 +43,9 @@ async function updateStageIds() {
 }
 
 async function displayStageLinks() {
+  const linkContainer = document.getElementById('linkContainer');
+  linkContainer.innerHTML = '';
+
   const peakStageId = window.localStorage.getItem('peakStageId');
   if (!peakStageId) {
     return;
@@ -59,7 +62,6 @@ async function displayStageLinks() {
     return;
   }
 
-  const linkContainer = document.getElementById('linkContainer');
   for (let i = 0; i < stages.length; i++) {
     const link = document.createElement('a');
     const stageId = stages[i];
