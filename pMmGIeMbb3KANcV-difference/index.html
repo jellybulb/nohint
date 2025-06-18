@@ -5,17 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/nohint/favicon.ico" type="image/x-icon"/>
   <title>NO HINT - Difference</title>
-  <style>
-    html, body {
-      justify-content: center;
-      background: #000;
-    }
-    .main-container {
-      padding-top: 100px;
-      padding-bottom: 400px;
-      justify-content: center;
-    }
-  </style>
+  <link rel="stylesheet" href="/nohint/common_index.css">
 </head>
 <body>
   <div class="main-container" align="center">
@@ -30,8 +20,9 @@
   <script src="/nohint/common.js"></script>
   <script>
     (() => {
-      window.addEventListener('pageshow', () => {
-        updateStageIds();
+      window.addEventListener('pageshow', async () => {
+        await updateStageIds();
+        await displayStageLinks();
       });
     })();
   </script>
