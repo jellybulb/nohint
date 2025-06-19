@@ -19,14 +19,14 @@ html, body {
     width: fit-content;
     font-size: 3.8vw;
     font-weight: bold;
-    color: #292929;
+    color: #333;
     margin-bottom: 1.6vw;
     margin-left: 12vw;
 }
 .stage-link:hover,
 .stage-link:active,
 .stage-link:visited {
-    color: #292929;
+    color: #333;
 }
 .stage-link.disabled {
     pointer-events: none;
@@ -36,6 +36,6 @@ html, body {
 .top-line {
     width: 100%;
     height: 1vw;
-    background-color: #292929;
+    background-color: #333;
     margin-bottom: 1.6vw;
 }
