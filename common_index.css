@@ -19,21 +19,23 @@ html, body {
     width: fit-content;
     font-size: 3.8vw;
     font-weight: bold;
-    color: #672315;
+    color: #292929;
     margin-bottom: 1.6vw;
     margin-left: 12vw;
 }
+.stage-link:hover,
+.stage-link:active,
 .stage-link:visited {
-    color: #672315;
+    color: #292929;
 }
 .stage-link.disabled {
     pointer-events: none;
     text-decoration: none;
-    color: #b33b24;
+    color: #555;
 }
 .top-line {
     width: 100%;
     height: 1vw;
-    background-color: #672315;
+    background-color: #292929;
     margin-bottom: 1.6vw;
 }
