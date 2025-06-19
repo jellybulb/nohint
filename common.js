@@ -68,7 +68,7 @@ async function displayStageLinks() {
 
     const stageElement = document.createElement('div');
     stageElement.className = 'stage-text';
-    stageElement.textContent = '스테이지';
+    stageElement.textContent = '진행 현황';
     linkContainer.appendChild(stageElement);
 
   for (let i = 0; i < stages.length; i++) {
