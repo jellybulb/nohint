@@ -9,7 +9,7 @@ html, body {
 }
 .stage-link-container {
     width: 80vw;
-    margin: 0 auto;
+    margin: 0 auto 100px auto;
     display: flex;
     flex-direction: column;
     align-items: left;
