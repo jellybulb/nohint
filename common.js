@@ -66,6 +66,11 @@ async function displayStageLinks() {
     topLine.className = 'top-line';
     linkContainer.appendChild(topLine);
 
+    const stageElement = document.createElement('div');
+    stageElement.className = 'stage-text';
+    stageElement.textContent = '스테이지';
+    linkContainer.appendChild(stageElement);
+
   for (let i = 0; i < stages.length; i++) {
     const link = document.createElement('a');
     const stageId = stages[i];

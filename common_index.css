@@ -14,6 +14,14 @@ html, body {
     flex-direction: column;
     align-items: left;
 }
+.stage-text {
+    font-size: 5vw;
+    margin-bottom: 1.6vw;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
 .stage-link {
     display: inline-block;
     width: fit-content;
