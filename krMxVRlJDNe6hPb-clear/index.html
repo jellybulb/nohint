@@ -97,7 +97,7 @@
         const finalScore = 100 - timeMinusScore - wrongMinusScore + bonusScore;
         const scoreResult = document.createElement('div');
         scoreResult.className = 'clear-text';
-        scoreResult.textContent = `[총점] ${Math.floor(finalScore)}점`;
+        scoreResult.textContent = `[점수] ${Math.floor(finalScore)}점`;
         gameResult.appendChild(scoreResult);
       }
       catch (errer) {
