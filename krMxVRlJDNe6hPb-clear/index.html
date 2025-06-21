@@ -90,14 +90,15 @@
         bonusResult.className = 'clear-text';
         bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답' : '오답'}`;
         gameResult.appendChild(bonusResult);
-
-        localStorage.clear();
       }
       catch (errer) {
         const errorText = document.createElement('div');
         errorText.className = 'clear-text';
         errorText.textContent = `비정상적인 접근입니다.`;
         gameResult.appendChild(errorText);
+      }
+      finally {
+        localStorage.clear();
       }
     })();
   </script>
