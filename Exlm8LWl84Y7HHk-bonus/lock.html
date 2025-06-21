@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Input Checker</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+    .input-container {
+      background: #292929;
+      padding: 4vw;
+      border-radius: 2vw;
+      box-shadow: 0 0 2vw rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90vw;
+      max-width: 400px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 2vw;
+      font-size: 5vw;
+      max-font-size: 24px;
+      border-radius: 1vw;
+      border: none;
+      margin-bottom: 4vw;
+      box-sizing: border-box;
+    }
+    button.submit-btn {
+      width: 100%;
+      padding: 2vw;
+      font-size: 5vw;
+      max-font-size: 24px;
+      background: #555;
+      color: #ddd;
+      border: none;
+      border-radius: 1vw;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.submit-btn:active {
+      background: #222;
+    }
+    .shake {
+      animation: shake 0.25s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25%, 75% { transform: translateX(-2%); }
+      50% { transform: translateX(2%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="input-container" id="container">
+    <input type="text" id="answerInput" placeholder="정답 입력"/>
+    <button class="submit-btn" id="submitBtn">제출</button>
+  </div>
+
+  <script>
+    const correctAnswer = "열쇠";
+    const input = document.getElementById("answerInput");
+    const button = document.getElementById("submitBtn");
+    const container = document.getElementById("container");
+
+    function handleCorrectAnswer() {
+      container.style.background = "#1e6e3f";
+      alert("정답입니다!");
+    }
+
+    function handleWrongAnswer() {
+      container.classList.add("shake");
+      container.addEventListener("animationend", () => {
+        container.classList.remove("shake");
+      }, { once: true });
+      alert("오답입니다.");
+    }
+
+    function checkAnswer() {
+      const value = input.value.trim();
+      if (value === correctAnswer) {
+        handleCorrectAnswer();
+      } else {
+        handleWrongAnswer();
+      }
+    }
+
+    button.addEventListener("click", checkAnswer);
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") checkAnswer();
+    });
+
+    document.body.addEventListener('touchstart', function(){
+      if (document.activeElement && document.activeElement !== document.body) {
+        document.activeElement.blur();
+      }
+    }, false);
+  </script>
+</body>
+</html>
