@@ -94,13 +94,11 @@
         const timeMinusScore = Math.max(0, Math.min(Math.floor((totalSeconds - 5400) / 60), 50));
         const wrongMinusScore = Math.min(wrongAnswerCountValue * 2, 50);
         const bonusScore = bonusCorrect ? 10 : 0;
-        const finalScore = 100 - timeMinusScore - wrongAnswerCount + bonusScore;
+        const finalScore = 100 - timeMinusScore - wrongMinusScore + bonusScore;
         const scoreResult = document.createElement('div');
         scoreResult.className = 'clear-text';
         scoreResult.textContent = `[총점] ${Math.floor(finalScore)}점`;
         gameResult.appendChild(scoreResult);
-
-        console.log(timeMinusScore, wrongMinusScore, bonusScore, finalScore);
       }
       catch (errer) {
         const errorText = document.createElement('div');
@@ -109,7 +107,7 @@
         gameResult.appendChild(errorText);
       }
       finally {
-        // localStorage.clear();
+        localStorage.clear();
       }
     })();
   </script>
