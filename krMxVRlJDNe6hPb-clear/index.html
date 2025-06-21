@@ -11,7 +11,7 @@
     .custom-link:visited,
     .custom-link:hover,
     .custom-link:active {
-      font-size: clamp(1px, 4.8vw, 24px);
+      font-size: clamp(1px, 5vw, 25px);
       font-weight: bold;
       font-family: serif;
       color: #14a7bb;
@@ -39,7 +39,7 @@
     <br>
     <br>
     <div id="game-result"></div>
-    <a class="custom-link" href="/nohint" target="_self">메인 페이지로</a>
+    <a class="custom-link" href="/nohint" target="_self">처음으로</a>
   </div>
   <script src="/nohint/common.js"></script>
   <script>
@@ -57,41 +57,48 @@
         }
 
         const startTime = new Date(startTimeString);
-      
-        function getElapsedTimeString() {
-          const currentTime = new Date();
-          const totalSeconds = Math.floor((currentTime - startTime) / 1000);
-      
-          const days = Math.floor(totalSeconds / 86400);
-          const hours = Math.floor(totalSeconds / 3600) % 24;
-          const minutes = Math.floor(totalSeconds / 60) % 60;
-          const seconds = totalSeconds % 60;
-      
-          const parts = [];
-          if (days) parts.push(`${days}일`);
-          if (days || hours) parts.push(`${hours}시간`);
-          if (days || hours || minutes) parts.push(`${minutes}분`);
-          parts.push(`${seconds}초`);
+        const currentTime = new Date();
+        const totalSeconds = Math.floor((currentTime - startTime) / 1000);
+    
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor(totalSeconds / 3600) % 24;
+        const minutes = Math.floor(totalSeconds / 60) % 60;
+        const seconds = totalSeconds % 60;
+    
+        const parts = [];
+        if (days) parts.push(`${days}일`);
+        if (days || hours) parts.push(`${hours}시간`);
+        if (days || hours || minutes) parts.push(`${minutes}분`);
+        parts.push(`${seconds}초`);
 
-          return parts.join(' ');
-        }
+        const elapsedTimeString = parts.join(' ');
         
         const elapsedTimeResult = document.createElement('div');
         elapsedTimeResult.className = 'clear-text';
-        elapsedTimeResult.textContent = `[플레이 시간] ${getElapsedTimeString()}`;
+        elapsedTimeResult.textContent = `[플레이 시간] ${elapsedTimeString}`;
         gameResult.appendChild(elapsedTimeResult);
 
         const wrongAnswerResult = document.createElement('div');
         wrongAnswerResult.className = 'clear-text';
         const wrongAnswerCount = localStorage.getItem('wrongAnswerCount');
-        wrongAnswerResult.textContent = `[오답 횟수] ${wrongAnswerCount ? wrongAnswerCount : '0'}회`;
+        const wrongAnswerCountValue = wrongAnswerCount ? wrongAnswerCount : 0;
+        wrongAnswerResult.textContent = `[오답 횟수] ${wrongAnswerCountValue}회`;
         gameResult.appendChild(wrongAnswerResult);
 
         const bonusCorrect = localStorage.getItem('bonusCorrect');
         const bonusResult = document.createElement('div');
         bonusResult.className = 'clear-text';
-        bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답' : '오답'}`;
+        bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답(+10점)' : '오답(+0점)'}`;
         gameResult.appendChild(bonusResult);
+
+        const timeMinusScore = Math.max(0, Math.min(Math.floor((totalSeconds - 5400) / 60), 50));
+        const wrongMinusScore = Math.min(wrongAnswerCountValue * 2, 50);
+        const bonusScore = bonusCorrect ? 10 : 0;
+        const finalScore = 100 - timeMinusScore - wrongAnswerCount + bonusScore;
+        const scoreResult = document.createElement('div');
+        scoreResult.className = 'clear-text';
+        scoreResult.textContent = `[총점] ${Math.floor(finalScore)}점`;
+        gameResult.appendChild(scoreResult);
       }
       catch (errer) {
         const errorText = document.createElement('div');
