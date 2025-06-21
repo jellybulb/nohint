@@ -8,16 +8,15 @@ html, body {
     justify-content: center;
 }
 .stage-link-container {
-    width: 80vw;
-    max-width: 400px;
+    width: clamp(1px, 80vw, 400px);
     margin: 0 auto 100px auto;
     display: flex;
     flex-direction: column;
     align-items: left;
 }
 .stage-text {
-    font-size: 25%;
-    margin-bottom: 3%;
+    font-size: clamp(1px, 5vw, 25px);
+    margin-bottom: clamp(1px, 1.6vw, 8px);
     color: #333;
     font-weight: bold;
     text-align: center;
@@ -26,11 +25,11 @@ html, body {
 .stage-link {
     display: inline-block;
     width: fit-content;
-    font-size: 20%;
+    font-size: clamp(1px, 3.8vw, 19px);
     font-weight: bold;
     color: #333;
-    margin-bottom: 3%;
-    margin-left: 20%;
+    margin-bottom: clamp(1px, 1.6vw, 8px);
+    margin-left: clamp(1px, 15vw, 75px);
 }
 .stage-link:hover,
 .stage-link:active,
@@ -44,7 +43,7 @@ html, body {
 }
 .top-line {
     width: 100%;
-    height: 5px;
+    height: clamp(1px, 1vw, 5px);
     background-color: #333;
-    margin-bottom: 1.6vw;
+    margin-bottom: clamp(1px, 1.6vw, 8px);
 }
