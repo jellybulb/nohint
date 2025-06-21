@@ -94,7 +94,10 @@
         localStorage.clear();
       }
       catch (errer) {
-        gameResult.textContent = "비정상적인 접근입니다.";
+        const errorText = document.createElement('div');
+        errorText.className = 'clear-text';
+        errorText.textContent = `비정상적인 접근입니다.`;
+        gameResult.appendChild(errorText);
       }
     })();
   </script>
