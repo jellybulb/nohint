@@ -16,6 +16,7 @@ html, body {
 }
 .stage-text {
     font-size: clamp(1px, 5vw, 25px);
+    word-break: keep-all;
     margin-bottom: clamp(1px, 1.6vw, 8px);
     color: #555;
     font-weight: bold;
@@ -24,6 +25,7 @@ html, body {
 }
 .stage-phrase {
     font-size: clamp(1px, 4.5vw, 22.5px);
+    word-break: keep-all;
     margin-bottom: 100px;
     color: #aaa;
     font-weight: bold;
@@ -32,6 +34,7 @@ html, body {
 }
 .stage-title {
     font-size: clamp(1px, 7vw, 35px);
+    word-break: keep-all;
     color: #333;
     font-weight: bold;
     text-align: center;
@@ -40,6 +43,7 @@ html, body {
 }
 .stage-link {
     display: inline-block;
+    word-break: keep-all;
     width: fit-content;
     font-size: clamp(1px, 4vw, 20px);
     font-weight: bold;
