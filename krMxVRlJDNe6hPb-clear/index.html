@@ -14,18 +14,29 @@
       font-size: 22px;
       font-weight: bold;
       font-family: serif;
-      color: #118999;
+      color: #14a7bb;
       text-decoration: underline;
       display: inline-block;
       user-select: none;
+    }
+    .clear-text {
+    font-size: clamp(1px, 3.8vw, 19px);
+    margin-bottom: clamp(1px, 1.6vw, 8px);
+    color: #ccc;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    }
+    .game-result {
+      margin-bottom: 100px;
     }
   </style>
 </head>
 <body>
   <div class="main-container" align="center">
-    <div class="stage-text">
-      NO HINT CLEAR!<br><br><br>
-    </div>
+    <img src="./clear.jpg" style="max-width: 300px; width: 90vw;" alt="">
+    <br>
+    <br>
     <div id="game-result"></div>
     <a class="custom-link" href="/nohint" target="_self">메인 페이지로</a>
   </div>
@@ -58,21 +69,23 @@
         }
         
         const elapsedTimeResult = document.createElement('div');
-        elapsedTimeResult.className = 'stage-text';
+        elapsedTimeResult.className = 'clear-text';
         elapsedTimeResult.textContent = `[플레이 시간] ${getElapsedTimeString()}`;
         gameResult.appendChild(elapsedTimeResult);
 
         const wrongAnswerResult = document.createElement('div');
-        wrongAnswerResult.className = 'stage-text';
+        wrongAnswerResult.className = 'clear-text';
         const wrongAnswerCount = localStorage.getItem('wrongAnswerCount');
         wrongAnswerResult.textContent = `[오답 횟수] ${wrongAnswerCount ? wrongAnswerCount : '0'}회`;
         gameResult.appendChild(wrongAnswerResult);
 
         const bonusCorrect = localStorage.getItem('bonusCorrect');
         const bonusResult = document.createElement('div');
-        bonusResult.className = 'stage-text';
+        bonusResult.className = 'clear-text';
         bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답' : '오답'}`;
         gameResult.appendChild(bonusResult);
+
+        localStorage.clear();
       }
       catch (errer) {
         gameResult.textContent = "비정상적인 접근입니다.";
