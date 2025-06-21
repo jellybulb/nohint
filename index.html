@@ -54,26 +54,26 @@
     }
     .input-container {
       background: #292929;
-      padding: 4vw;
+      padding: clamp(1px, 4vw, 20px);
       margin-bottom: clamp(1px, 5vw, 25px);
-      border-radius: 2vw;
+      border-radius: clamp(1px, 2vw, 10px);
       box-shadow: 0 0 2vw rgba(255,255,255,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 85vw;
-      max-width: 350px;
+      width: 80vw;
+      max-width: 400px;
     }
     input[type="text"] {
       width: 100%;
-      padding: 2vw;
-      font-size: 5vw;
-      border-radius: 1vw;
+      padding: clamp(1px, 2vw, 10px);
+      font-size: clamp(1px, 5vw, 25px);
+      border-radius: clamp(1px, 1vw, 5px);
       border: none;
       box-sizing: border-box;
     }
     .shakei {
-      animation: shake 0.25s;
+      animation: shakei 0.2s;
     }
     @keyframes shakei {
       0%, 100% { transform: translateX(0); }
@@ -102,7 +102,7 @@
       7. 도중에 환경(기기, 브라우저)이 바뀌면 진행 기록이 보존되지 않기 때문에, 클리어가 목적이시라면 동일한 환경에서 시작부터 끝까지 플레이 해주세요.
     </div>
     <div class="input-container" id="inputContainer">
-      <input type="text" id="nameInput" placeholder="이름(닉네임)을 입력하세요.">
+      <input type="text" maxlength="20" id="nameInput" placeholder="이름(닉네임)을 입력하세요.">
     </div>
     <a class="custom-link" id="start-link" href="" target="_self">시작하기</a>
   </div>
@@ -118,7 +118,7 @@
         const inputContainer = document.getElementById('inputContainer');
         if (name === "") {
           inputContainer.classList.add('shakei');
-          setTimeout(() => inputContainer.classList.remove('shakei'), 250);
+          setTimeout(() => inputContainer.classList.remove('shakei'), 200);
         } else {
           localStorage.setItem('userName', name);
           if (!localStorage.getItem("startTime")) {
