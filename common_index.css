@@ -15,7 +15,7 @@ html, body {
     align-items: left;
 }
 .stage-text {
-    font-size: clamp(1px, 4.5vw, 22.5px);
+    font-size: clamp(1px, 4.8vw, 24px);
     margin-bottom: clamp(1px, 1.6vw, 8px);
     color: #555;
     font-weight: bold;
@@ -23,7 +23,7 @@ html, body {
     user-select: none;
 }
 .stage-phrase {
-    font-size: clamp(1px, 3vw, 15px);
+    font-size: clamp(1px, 4.5vw, 22.5px);
     margin-bottom: 100px;
     color: #aaa;
     font-weight: bold;
