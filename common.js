@@ -76,10 +76,15 @@ async function displayStageLinks() {
     const stageId = stages[i];
     link.href = '/nohint/' + stageId;
     link.className = 'stage-link';
-    link.textContent = `${i + 1}. ${stageId.split("-")[1].toUpperCase()}`;
+    const stageName = stageId.split("-")[1].toUpperCase();
+    const stageFullTitle = `${i + 1}. ${stageName}`; 
+    link.textContent = stageFullTitle;
     if (stageId === window.localStorage.getItem('currentStageId')) {
       link.className += " disabled";
       link.textContent += " ◀";
+
+      const stageTitle = document.getElementById('stage-title');
+      stageTitle.textContent = stageFullTitle;
     }
     linkContainer.appendChild(link);
 

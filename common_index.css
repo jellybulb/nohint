@@ -22,6 +22,14 @@ html, body {
     text-align: center;
     user-select: none;
 }
+.stage-title {
+    font-size: clamp(1px, 6vw, 30px);
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 100px;
+}
 .stage-link {
     display: inline-block;
     width: fit-content;
