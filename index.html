@@ -52,6 +52,34 @@
       user-select: none;
       animation: rapid-glitch-short 4.8s infinite;
     }
+    .input-container {
+      background: #292929;
+      padding: 4vw;
+      border-radius: 2vw;
+      box-shadow: 0 0 2vw rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 85vw;
+      max-width: 350px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 2vw;
+      font-size: 5vw;
+      border-radius: 1vw;
+      border: none;
+      margin-bottom: 4vw;
+      box-sizing: border-box;
+    }
+    .shakei {
+      animation: shake 0.25s;
+    }
+    @keyframes shakei {
+      0%, 100% { transform: translateX(0); }
+      25%, 75% { transform: translateX(-2%); }
+      50% { transform: translateX(2%); }
+    }
   </style>
 </head>
 <body>
@@ -67,11 +95,14 @@
     <div class="stage-phrase">
       1. 답 입력 방식은 자물쇠(숫자, 8핀, 방향 등)와 유사하게 구현되어 있습니다.<br><br>
       2. 문제 페이지 하단에서 진행 현황을 확인하거나 원하는 문제로 이동할 수 있습니다.<br><br>
-      3. '시작하기' 를 누르면 게임이 시작되며 플레이 시간과 오답 횟수가 기록됩니다.<br><br>
-      4. 최종 클리어 시 진행 기록에 따른 점수(100점 만점)를 확인할 수 있습니다.<br><br>
+      3. 이름(닉네임)을 입력하고 '시작하기' 를 누르면 게임이 시작되며, 플레이 시간과 오답 횟수가 기록됩니다.<br><br>
+      4. 클리어 시 진행 기록에 따른 점수(100점 만점)를 확인할 수 있습니다.<br><br>
       5. 플레이 시간 1시간 30분 경과 이후부터 1분 마다 1점씩(최대 50점) 감점됩니다.<br><br>
       6. 오답 1회 마다 2점씩(최대 50점) 감점됩니다.<br><br>
       7. 도중에 환경(기기, 브라우저)이 바뀌면 진행 기록이 보존되지 않기 때문에, 클리어가 목적이시라면 동일한 환경에서 시작부터 끝까지 플레이 해주세요.
+    </div>
+    <div class="input-container" id="inputContainer">
+      <input type="text" id="nameInput" placeholder="이름(닉네임)을 입력하세요.">
     </div>
     <a class="custom-link" id="start-link" href="" target="_self">시작하기</a>
   </div>
@@ -82,12 +113,21 @@
 
       document.getElementById("start-link").addEventListener("click", (event) => {
         event.preventDefault();
-        if (!localStorage.getItem("startTime")) {
-          localStorage.setItem("startTime", new Date().toISOString());
+        const input = document.getElementById('nameInput');
+        const name = input.value.trim();
+        const inputContainer = document.getElementById('container');
+        if (name === "") {
+          inputContainer.classList.add('shakei');
+          setTimeout(() => inputContainer.classList.remove('shakei'), 250);
+        } else {
+          localStorage.setItem('userName', name);
+          if (!localStorage.getItem("startTime")) {
+            localStorage.setItem("startTime", new Date().toISOString());
+          }
+          const appConfig = window.appConfig;
+          const firstStageId = appConfig.stages[0];
+          location.href = '/nohint/' + firstStageId;
         }
-        const appConfig = window.appConfig;
-        const firstStageId = appConfig.stages[0];
-        location.href = '/nohint/' + firstStageId;
       });
     })();
   </script>

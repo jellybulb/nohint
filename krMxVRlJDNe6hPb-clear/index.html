@@ -28,6 +28,15 @@
     text-align: center;
     user-select: none;
     }
+    .clear-name {
+    font-size: clamp(1px, 4.5vw, 22.5px);
+    margin: 50px;
+    word-break: keep-all;
+    color: #888;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    }
     #game-result {
       margin-bottom: 400px;
     }
@@ -49,13 +58,19 @@
       const gameResult = document.getElementById("game-result");
 
       try {
+        const userNameString = localStorage.getItem('userName');
         const startTimeString = localStorage.getItem('startTime');
         const peakStageId = localStorage.getItem('peakStageId');
         const currentStageId = localStorage.getItem('currentStageId');
-        if (!startTimeString || peakStageId != "Exlm8LWl84Y7HHk-bonus" || currentStageId != "Exlm8LWl84Y7HHk-bonus") {
+        if (!userNameString || !startTimeString || peakStageId != "Exlm8LWl84Y7HHk-bonus" || currentStageId != "Exlm8LWl84Y7HHk-bonus") {
           throw new Error("비정상적인 접근.");
         }
 
+        const userNameDiv = document.createElement('div');
+        userNameDiv.className = 'clear-name';
+        userNameDiv.textContent = userNameString;
+        gameResult.appendChild(userNameDiv);
+        
         const startTime = new Date(startTimeString);
         const currentTime = new Date();
         const totalSeconds = Math.floor((currentTime - startTime) / 1000);
