@@ -30,15 +30,23 @@
     }
     .clear-name {
     font-size: clamp(1px, 4.5vw, 22.5px);
-    margin: 50px;
+    margin: clamp(1px, 10vw, 50px);
     word-break: keep-all;
-    color: #888;
+    color: white;
     font-weight: bold;
     text-align: center;
     user-select: none;
     }
     #game-result {
       margin-bottom: 400px;
+    }
+    @keyframes fadeColor {
+      0% { color: white; }
+      50% { color: #777; }  /* 회색 */
+      100% { color: white; }
+    }
+    .slow-fade-text {
+      animation: fadeColor 1.5s ease-in-out infinite;
     }
   </style>
 </head>
@@ -67,7 +75,7 @@
         }
 
         const userNameDiv = document.createElement('div');
-        userNameDiv.className = 'clear-name';
+        userNameDiv.className = 'clear-name slow-fade-text';
         userNameDiv.textContent = userNameString;
         gameResult.appendChild(userNameDiv);
         
