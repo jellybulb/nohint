@@ -27,7 +27,7 @@
     text-align: center;
     user-select: none;
     }
-    .game-result {
+    #game-result {
       margin-bottom: 100px;
     }
   </style>
@@ -48,6 +48,12 @@
       try {
         const gameResult = document.getElementById("game-result");
         const startTimeString = localStorage.getItem('startTime');
+        const peakStageId = localStorage.getItem('peakStageId');
+        const currentStageId = localStorage.getItem('currentStageId');
+        if (!startTimeString || peakStageId != "Exlm8LWl84Y7HHk-bonus" || currentStageId != "Exlm8LWl84Y7HHk-bonus") {
+          throw new Error("비정상적인 접근.");
+        }
+
         const startTime = new Date(startTimeString);
       
         function getElapsedTimeString() {
