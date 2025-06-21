@@ -99,6 +99,8 @@
         scoreResult.className = 'clear-text';
         scoreResult.textContent = `[총점] ${Math.floor(finalScore)}점`;
         gameResult.appendChild(scoreResult);
+
+        console.log(timeMinusScore, wrongMinusScore, bonusScore, finalScore);
       }
       catch (errer) {
         const errorText = document.createElement('div');
