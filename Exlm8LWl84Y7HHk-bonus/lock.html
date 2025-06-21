@@ -74,14 +74,12 @@
     const container = document.getElementById("container");
 
     function handleCorrectAnswer() {
-      container.style.background = "#1e6e3f";
+      localStorage.setItem('bonusCorrect', 'true');
+      window.top.location.href = "/nohint/krMxVRlJDNe6hPb-clear";
     }
 
     function handleWrongAnswer() {
-      container.classList.add("shake");
-      container.addEventListener("animationend", () => {
-        container.classList.remove("shake");
-      }, { once: true });
+      window.top.location.href = "/nohint/krMxVRlJDNe6hPb-clear";
     }
 
     function checkAnswer() {

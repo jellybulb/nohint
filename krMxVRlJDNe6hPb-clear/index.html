@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/nohint/favicon.ico" type="image/x-icon"/>
+  <title>NO HINT - CLEAR</title>
+  <link rel="stylesheet" href="/nohint/common_index.css">
+    <style>
+    .custom-link,
+    .custom-link:visited,
+    .custom-link:hover,
+    .custom-link:active {
+      font-size: 22px;
+      font-weight: bold;
+      font-family: serif;
+      color: #118999;
+      text-decoration: underline;
+      display: inline-block;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container" align="center">
+    <div class="stage-text">
+      NO HINT CLEAR!<br><br><br>
+    </div>
+    <div id="game-result"></div>
+    <a class="custom-link" href="/nohint" target="_self">메인 페이지로</a>
+  </div>
+  <script src="/nohint/common.js"></script>
+  <script>
+    (async () => {
+      await loadConfig();
+
+      try {
+        const gameResult = document.getElementById("game-result");
+        const startTimeString = localStorage.getItem('startTime');
+        const startTime = new Date(startTimeString);
+      
+        function getElapsedTimeString() {
+          const currentTime = new Date();
+          const totalSeconds = Math.floor((currentTime - startTime) / 1000);
+      
+          const days = Math.floor(totalSeconds / 86400);
+          const hours = Math.floor(totalSeconds / 3600) % 24;
+          const minutes = Math.floor(totalSeconds / 60) % 60;
+          const seconds = totalSeconds % 60;
+      
+          const parts = [];
+          if (days) parts.push(`${days}일`);
+          if (days || hours) parts.push(`${hours}시간`);
+          if (days || hours || minutes) parts.push(`${minutes}분`);
+          parts.push(`${seconds}초`);
+
+          return parts.join(' ');
+        }
+        
+        const elapsedTimeResult = document.createElement('div');
+        elapsedTimeResult.className = 'stage-text';
+        elapsedTimeResult.textContent = `[플레이 시간] ${getElapsedTimeString()}`;
+        gameResult.appendChild(elapsedTimeResult);
+
+        const wrongAnswerResult = document.createElement('div');
+        wrongAnswerResult.className = 'stage-text';
+        const wrongAnswerCount = localStorage.getItem('wrongAnswerCount');
+        wrongAnswerResult.textContent = `[오답 횟수] ${wrongAnswerCount ? wrongAnswerCount : '0'}회`;
+        gameResult.appendChild(wrongAnswerResult);
+
+        const bonusCorrect = localStorage.getItem('bonusCorrect');
+        const bonusResult = document.createElement('div');
+        bonusResult.className = 'stage-text';
+        bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답' : '오답'}`;
+        gameResult.appendChild(bonusResult);
+      }
+      catch (errer) {
+        gameResult.textContent = "비정상적인 접근입니다.";
+      }
+    })();
+  </script>
+</body>
+</html>
