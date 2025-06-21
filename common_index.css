@@ -23,7 +23,7 @@ html, body {
     user-select: none;
 }
 .stage-phrase {
-    font-size: clamp(1px, 3.8vw, 19px);
+    font-size: clamp(1px, 3vw, 15px);
     margin-bottom: 100px;
     color: #ccc;
     font-weight: bold;
