@@ -9,14 +9,15 @@ html, body {
 }
 .stage-link-container {
     width: 80vw;
+    max-width: 400px;
     margin: 0 auto 100px auto;
     display: flex;
     flex-direction: column;
     align-items: left;
 }
 .stage-text {
-    font-size: 5vw;
-    margin-bottom: 1.6vw;
+    font-size: 6.25%;
+    margin-bottom: 2%;
     color: #333;
     font-weight: bold;
     text-align: center;
@@ -25,11 +26,11 @@ html, body {
 .stage-link {
     display: inline-block;
     width: fit-content;
-    font-size: 3.8vw;
+    font-size: 4.75%;
     font-weight: bold;
     color: #333;
-    margin-bottom: 1.6vw;
-    margin-left: 15vw;
+    margin-bottom: 2%;
+    margin-left: 20%;
 }
 .stage-link:hover,
 .stage-link:active,
@@ -43,7 +44,7 @@ html, body {
 }
 .top-line {
     width: 100%;
-    height: 1vw;
+    height: 1.5%;
     background-color: #333;
-    margin-bottom: 1.6vw;
+    margin-bottom: 2%;
 }
