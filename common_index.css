@@ -15,7 +15,7 @@ html, body {
     align-items: left;
 }
 .stage-text {
-    font-size: clamp(1px, 4.8vw, 24px);
+    font-size: clamp(1px, 5vw, 25px);
     margin-bottom: clamp(1px, 1.6vw, 8px);
     color: #555;
     font-weight: bold;
@@ -31,7 +31,7 @@ html, body {
     user-select: none;
 }
 .stage-title {
-    font-size: clamp(1px, 6vw, 30px);
+    font-size: clamp(1px, 7vw, 35px);
     color: #333;
     font-weight: bold;
     text-align: center;
@@ -41,7 +41,7 @@ html, body {
 .stage-link {
     display: inline-block;
     width: fit-content;
-    font-size: clamp(1px, 3.8vw, 19px);
+    font-size: clamp(1px, 4vw, 20px);
     font-weight: bold;
     color: #333;
     margin-bottom: clamp(1px, 1.6vw, 8px);
