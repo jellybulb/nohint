@@ -29,7 +29,7 @@
     user-select: none;
     }
     .clear-name {
-    font-size: clamp(1px, 4.5vw, 22.5px);
+    font-size: clamp(1px, 5.5vw, 27.5px);
     margin: clamp(1px, 10vw, 50px);
     word-break: keep-all;
     color: white;
@@ -38,22 +38,21 @@
     user-select: none;
     }
     #game-result {
-      margin-bottom: 400px;
+      margin-bottom: 500px;
     }
     @keyframes fadeColor {
       0% { color: white; }
-      50% { color: #777; }  /* 회색 */
+      50% { color: #555; }  /* 회색 */
       100% { color: white; }
     }
     .slow-fade-text {
-      animation: fadeColor 1.5s ease-in-out infinite;
+      animation: fadeColor 1.3s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
   <div class="main-container" align="center">
     <img src="./clear.jpg" style="max-width: 300px; width: 90vw;" alt="">
-    <br>
     <br>
     <div id="game-result"></div>
     <a class="custom-link" href="/nohint" target="_self">처음으로</a>
@@ -76,7 +75,7 @@
 
         const userNameDiv = document.createElement('div');
         userNameDiv.className = 'clear-name slow-fade-text';
-        userNameDiv.textContent = userNameString;
+        userNameDiv.textContent = `"${userNameString}"`;
         gameResult.appendChild(userNameDiv);
         
         const startTime = new Date(startTimeString);
