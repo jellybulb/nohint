@@ -99,17 +99,54 @@
       }
     });
 
-    confirmBtn.addEventListener('click', () => {
-      if (history.length === ANSWER.length && history.every((d,i) => d === ANSWER[i])) {
+    let pressTimer = null;
+    const resetInput = () => {
+      history = [];
+      inputsContainer.innerHTML = '';
+    };
+
+    const submitAnswer = () => {
+      if (history.length === ANSWER.length && history.every((d, i) => d === ANSWER[i])) {
         handleCorrectAnswer();
       } else {
         handleWrongAnswer();
         lock.classList.add('shaking');
         setTimeout(() => lock.classList.remove('shaking'), 300);
-        history = [];
-        inputsContainer.innerHTML = '';
+        resetInput();
+      }
+    };
+
+    confirmBtn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      pressTimer = setTimeout(() => {
+        resetInput();
+        pressTimer = null;
+      }, 1000);
+    });
+
+    confirmBtn.addEventListener('mouseup', (e) => {
+      e.preventDefault();
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        submitAnswer();
       }
     });
+
+    confirmBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      pressTimer = setTimeout(() => {
+        resetInput();
+        pressTimer = null;
+      }, 1000);
+    }, { passive: false });
+
+    confirmBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        submitAnswer();
+      }
+    }, { passive: false });
 
     dial.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
   </script>
