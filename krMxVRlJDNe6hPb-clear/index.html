@@ -45,8 +45,9 @@
     (async () => {
       await loadConfig();
 
+      const gameResult = document.getElementById("game-result");
+
       try {
-        const gameResult = document.getElementById("game-result");
         const startTimeString = localStorage.getItem('startTime');
         const peakStageId = localStorage.getItem('peakStageId');
         const currentStageId = localStorage.getItem('currentStageId');
