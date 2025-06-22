@@ -30,9 +30,18 @@
     }
     .clear-name {
     font-size: clamp(1px, 5.5vw, 27.5px);
-    margin: clamp(1px, 10vw, 50px);
+    margin-bottom: clamp(1px, 1.6vw, 8px);
     word-break: keep-all;
     color: white;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    }
+    .start-time-text {
+    font-size: clamp(1px, 3.5vw, 17.5px);
+    margin: clamp(1px, 10vw, 50px);
+    word-break: keep-all;
+    color: #333;
     font-weight: bold;
     text-align: center;
     user-select: none;
@@ -79,9 +88,23 @@
         gameResult.appendChild(userNameDiv);
         
         const startTime = new Date(startTimeString);
+
+        const year = startTime.getFullYear();
+        const month = String(startTime.getMonth() + 1).padStart(2, '0');
+        const day = String(startTime.getDate()).padStart(2, '0');
+        const hour = String(startTime.getHours()).padStart(2, '0');
+        const minute = String(startTime.getMinutes()).padStart(2, '0');
+        const second = String(startTime.getSeconds()).padStart(2, '0');
+        const formattedLocaleStartTime = `${year}-${month}-${day} ${hour}:${minute}:${second}~`;
+
+        const startTimeDiv = document.createElement('div');
+        startTimeDiv.className = 'start-time-text';
+        startTimeDiv.textContent = `${formattedLocaleStartTime}~`;
+        gameResult.appendChild(startTimeDiv);
+
         const currentTime = new Date();
         const totalSeconds = Math.floor((currentTime - startTime) / 1000);
-    
+
         const days = Math.floor(totalSeconds / 86400);
         const hours = Math.floor(totalSeconds / 3600) % 24;
         const minutes = Math.floor(totalSeconds / 60) % 60;
