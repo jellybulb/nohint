@@ -136,7 +136,7 @@
         bonusResult.textContent = `[보너스 문제] ${bonusCorrect ? '정답(+10점)' : '오답(+0점)'}`;
         gameResult.appendChild(bonusResult);
 
-        const timeMinusScore = Math.max(0, Math.min(Math.floor((totalSeconds - 5400) / 60), 50));
+        const timeMinusScore = Math.max(0, Math.min(Math.floor((totalSeconds - 4200) / 60), 50));
         const wrongMinusScore = Math.min(wrongAnswerCountValue * 2, 50);
         const bonusScore = bonusCorrect ? 10 : 0;
         const finalScore = 100 - timeMinusScore - wrongMinusScore + bonusScore;
