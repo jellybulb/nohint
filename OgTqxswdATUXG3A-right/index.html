@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/nohint/favicon.ico" type="image/x-icon"/>
+  <title>NO HINT - RIGHT</title>
+  <link rel="stylesheet" href="/nohint/common_index.css">
+</head>
+<body>
+  <div class="main-container" align="center">
+    <div id="stage-title" class="stage-title">&nbsp;</div>
+    <!-- 문제 -->
+    <img src="./puzzle.jpg" style="max-width: 600px; width: 90vw;" alt="">
+    <br>
+    <br>
+    <!-- 자물쇠 -->
+    <iframe style="max-width: 360px; width: 75vw; aspect-ratio: 1/1;" frameborder="0" src="./lock.html">
+    </iframe>
+  </div>
+  <div class="stage-link-container" id="linkContainer">
+  </div>
+  <script src="/nohint/common.js"></script>
+  <script>
+    (() => {
+      window.addEventListener('pageshow', async () => {
+        await updateStageIds();
+        await displayStageLinks();
+      });
+    })();
+  </script>
+</body>
+</html>

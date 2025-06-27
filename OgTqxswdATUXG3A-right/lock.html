@@ -101,7 +101,7 @@ font-weight: bold;
     5: 1, 6: 3, 7: 5, 8: 7  // 오른쪽
   };
 
-const correctPins = [1, 7, 8, 4];
+const correctPins = [4, 5, 6, 7];
 const correctCombo = Array(8).fill(0);
   correctPins.forEach(label => {
     const idx = labelToIndex[label];
@@ -128,7 +128,6 @@ const correctCombo = Array(8).fill(0);
       pin.addEventListener('click', () => {
         state[i] ^= 1;
         pin.classList.toggle('active');
-        updateSmileFaces();
       });
 
       cell.append(label, pin);
@@ -146,34 +145,6 @@ const correctCombo = Array(8).fill(0);
         setTimeout(() => lock.classList.remove('shake'), 300);
       }
     });
-
-    let firstCall = true;
-    function updateSmileFaces() {
-      if (!firstCall) {
-        const blinkImage = parent.document.getElementById('blink-image');
-        blinkImage.classList.add('flash-shake');
-        setTimeout(() => {
-          blinkImage.classList.remove('flash-shake');
-        }, 120);
-        const blinkContainer = parent.document.getElementById('blink-container');
-        blinkContainer.classList.add('flash-shake');
-        setTimeout(() => {
-          blinkContainer.classList.remove('flash-shake');
-        }, 120);
-      }
-      firstCall = false;
-
-      for (let i = 0; i < 8; i++) {
-        const label = labelMap[i];
-        const img = parent.document.getElementById(`face${i + 1}`);
-        if (!(correctPins.includes(label) ^ state[i])) {
-          img.src = "./smile.png";
-        }
-        else {
-          img.src = "./frown.png";
-        }
-      }
-    }
   </script>
 </body>
 </html>
