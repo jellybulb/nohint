@@ -68,3 +68,6 @@ html, body {
     background-color: #333;
     margin-bottom: clamp(1px, 1.6vw, 8px);
 }
+input {
+  font-family: Pretendard;
+}
