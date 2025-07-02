@@ -46,7 +46,7 @@ html, body {
     display: inline-block;
     word-break: keep-all;
     width: fit-content;
-    font-size: clamp(1px, 4.5vw, 22.5px);
+    font-size: clamp(1px, 4.7vw, 23.5px);
     font-weight: bold;
     color: #333;
     margin-bottom: clamp(1px, 1.6vw, 8px);
