@@ -1,7 +1,7 @@
 html, body {
     justify-content: center;
     background: #000;
-    font-family: "Pretendard";
+    font-family: Pretendard;
 }
 .main-container {
     padding-top: 100px;
