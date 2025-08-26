@@ -154,9 +154,18 @@
           const key = localStorage.key(i);
           storageSnapshot[key] = localStorage.getItem(key);
         }
-        errorText.style.whiteSpace = 'pre-line';
-        errorText.textContent = `비정상적인 접근입니다.\n${JSON.stringify(storageSnapshot)}`;
+        const output = {
+          localStorage: storageSnapshot,
+          error: {
+            name: errer && errer.name ? errer.name : undefined,
+            message: errer && errer.message ? errer.message : String(errer),
+            stack: errer && errer.stack ? errer.stack : undefined
+          }
+        };
+        errorText.textContent = `비정상적인 접근입니다.`;
+        scoreResult.textContent = `${JSON.stringify(output)}`
         gameResult.appendChild(errorText);
+        gameResult.appendChild(scoreResult);
       }
       finally {
         localStorage.clear();
