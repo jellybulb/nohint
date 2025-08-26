@@ -163,7 +163,9 @@
           }
         };
         errorText.textContent = `비정상적인 접근입니다.`;
-        scoreResult.textContent = `${JSON.stringify(output)}`
+        const errorDetails = document.createElement('div');
+        errorDetails.className = 'clear-text';
+        errorDetails.textContent = `${JSON.stringify(output)}`
         gameResult.appendChild(errorText);
         gameResult.appendChild(scoreResult);
       }
