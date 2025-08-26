@@ -167,7 +167,7 @@
         errorDetails.className = 'clear-text';
         errorDetails.textContent = `${JSON.stringify(output)}`
         gameResult.appendChild(errorText);
-        gameResult.appendChild(scoreResult);
+        gameResult.appendChild(errorDetails);
       }
       finally {
         localStorage.clear();
