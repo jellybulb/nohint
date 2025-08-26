@@ -149,7 +149,13 @@
       catch (errer) {
         const errorText = document.createElement('div');
         errorText.className = 'clear-text';
-        errorText.textContent = `비정상적인 접근입니다.`;
+        const storageSnapshot = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          storageSnapshot[key] = localStorage.getItem(key);
+        }
+        errorText.style.whiteSpace = 'pre-line';
+        errorText.textContent = `비정상적인 접근입니다.\n${JSON.stringify(storageSnapshot)}`;
         gameResult.appendChild(errorText);
       }
       finally {
