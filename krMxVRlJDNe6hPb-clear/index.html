@@ -164,7 +164,7 @@
         };
         errorText.textContent = `비정상적인 접근입니다.`;
         const errorDetails = document.createElement('div');
-        errorDetails.className = 'clear-text';
+        errorDetails.className = 'start-time-text';
         errorDetails.textContent = `${JSON.stringify(output)}`
         gameResult.appendChild(errorText);
         gameResult.appendChild(errorDetails);
