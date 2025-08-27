@@ -127,7 +127,7 @@
         const wrongAnswerResult = document.createElement('div');
         wrongAnswerResult.className = 'clear-text';
         const wrongAnswerCount = localStorage.getItem('wrongAnswerCount');
-        const wrongAnswerCountValue = wrongAnswerCount ? wrongAnswerCount : 0;
+        const wrongAnswerCountValue = wrongAnswerCount ? parseInt(wrongAnswerCount) : 0;
         wrongAnswerResult.textContent = `【오답 횟수】 ${wrongAnswerCountValue}회`;
         gameResult.appendChild(wrongAnswerResult);
 
